@@ -1,0 +1,14 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: AKIAS5M7SY0HCT4J7EN9
+      AWS_SECRET_ACCESS_KEY: fEqUbtTZOHkDamUQH+HZj0wCLHzhQ7BgU/wEwPve
+    steps:
+      - uses: actions/checkout@v4
+      - run: aws s3 sync ./public s3://onyx-tutor-sync-site --delete
